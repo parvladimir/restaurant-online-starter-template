@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kontakt und Reservierung bei Restaurant Musterküche in Dorsten. Telefon, WhatsApp, Öffnungszeiten und Anfahrt.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#8a2f1c">
+    <meta property="og:title" content="Kontakt | Restaurant Musterküche Dorsten">
+    <meta property="og:description" content="Kontakt, Reservierung, WhatsApp und Anfahrt.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/img/hero-restaurant.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://www.example-restaurant.de/contact.html">
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>Kontakt | Restaurant Musterküche Dorsten</title>
+  </head>
+  <body data-page-title="Kontakt">
+    <a class="skip-link" href="#main" data-i18n="skipToContent">Zum Inhalt springen</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Startseite"><img data-logo src="assets/img/logo-placeholder.svg" alt="Restaurant Musterküche Logo" width="44" height="44"><span data-restaurant-name>Restaurant Musterküche</span></a>
+        <button class="nav-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" data-i18n-label="navMenu"><span></span><span></span><span></span></button>
+        <nav class="site-nav" id="site-nav" data-site-nav aria-label="Hauptnavigation">
+          <a href="index.html" data-i18n="navHome">Start</a>
+          <a href="menu.html" data-i18n="navMenu">Speisekarte</a>
+          <a href="gallery.html" data-i18n="navGallery">Galerie</a>
+          <a href="contact.html" data-i18n="navContact">Kontakt</a>
+          <select class="language-switcher" data-language-switcher aria-label="Sprache wählen"><option value="de">DE</option><option value="en">EN</option></select>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero section">
+        <div class="container narrow">
+          <p class="eyebrow" data-i18n="navContact">Kontakt</p>
+          <h1 data-i18n="contactPageTitle">Kontakt & Reservierung</h1>
+          <p data-i18n="contactPageText">Für Reservierungen, Bestellungen oder Fragen erreichen Sie uns telefonisch, per WhatsApp oder über das Formular.</p>
+          <div class="action-row">
+            <a class="button button-primary" href="tel:+49000000000" data-phone-link data-i18n="callNow">Jetzt anrufen</a>
+            <a class="button button-secondary" href="#" data-whatsapp-link data-i18n="orderWhatsApp">Per WhatsApp bestellen</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container contact-grid">
+          <form class="contact-form" action="php/contact.php" method="post" data-form-endpoint>
+            <input type="hidden" name="_subject" value="Neue Anfrage über die Restaurant Website">
+            <div class="field-grid">
+              <label>
+                <span data-i18n="nameLabel">Name</span>
+                <input name="name" type="text" autocomplete="name" required>
+              </label>
+              <label>
+                <span data-i18n="email">E-Mail</span>
+                <input name="email" type="email" autocomplete="email" required>
+              </label>
+            </div>
+            <div class="field-grid">
+              <label>
+                <span data-i18n="phone">Telefon</span>
+                <input name="phone" type="tel" autocomplete="tel">
+              </label>
+              <label>
+                <span data-i18n="dateLabel">Datum</span>
+                <input name="date" type="date">
+              </label>
+            </div>
+            <label>
+              <span data-i18n="personsLabel">Personen</span>
+              <input name="persons" type="number" min="1" max="40" inputmode="numeric">
+            </label>
+            <label>
+              <span data-i18n="messageLabel">Nachricht</span>
+              <textarea name="message" rows="6" required></textarea>
+            </label>
+            <label class="checkbox-row">
+              <input name="privacy" type="checkbox" required>
+              <span data-i18n="consentLabel">Ich stimme zu, dass meine Angaben zur Bearbeitung der Anfrage verarbeitet werden.</span>
+            </label>
+            <button class="button button-primary" type="submit" data-i18n="send">Anfrage senden</button>
+            <p class="form-hint" data-i18n="formHint">Wir melden uns schnellstmöglich zurück.</p>
+          </form>
+
+          <aside class="contact-aside">
+            <div class="hours-card">
+              <h2 data-i18n="openingHoursTitle">Öffnungszeiten</h2>
+              <div data-opening-hours></div>
+            </div>
+            <div class="info-list">
+              <div class="info-row"><span data-i18n="addressTitle">Adresse</span><strong data-address>Musterstraße 1, 46282 Dorsten</strong></div>
+              <div class="info-row"><span data-i18n="phone">Telefon</span><strong><a data-phone-link href="tel:+49000000000" data-phone>+49 000 000000</a></strong></div>
+              <div class="info-row"><span data-i18n="email">E-Mail</span><strong><a data-email-link href="mailto:info@musterkueche.de" data-email>info@musterkueche.de</a></strong></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-muted">
+        <div class="container map-frame map-wide">
+          <iframe data-map-embed title="Karte Restaurant Musterküche" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div><a class="brand footer-brand" href="index.html"><img data-logo src="assets/img/logo-placeholder.svg" alt="Restaurant Musterküche Logo" width="40" height="40"><span data-restaurant-name>Restaurant Musterküche</span></a><p data-i18n="footerText">Restaurant Website, digitale Speisekarte und lokale Sichtbarkeit.</p></div>
+        <div><h2 data-i18n="contactTitle">Kontakt</h2><p><span data-address>Musterstraße 1, 46282 Dorsten</span><br><a data-phone-link href="tel:+49000000000" data-phone>+49 000 000000</a></p></div>
+        <div><h2>Links</h2><a href="impressum.html" data-i18n="navImpressum">Impressum</a><a href="datenschutz.html" data-i18n="navPrivacy">Datenschutz</a></div>
+      </div>
+      <div class="container footer-bottom"><small>&copy; <span data-current-year></span> <span data-restaurant-name>Restaurant Musterküche</span></small></div>
+    </footer>
+
+    <script src="data/site-config.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

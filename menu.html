@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Digitale Speisekarte von Restaurant Musterküche in Dorsten. Vorspeisen, Hauptgerichte, Pizza, Döner, Burger, Salate, Desserts und Getränke.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#8a2f1c">
+    <meta property="og:title" content="Speisekarte | Restaurant Musterküche Dorsten">
+    <meta property="og:description" content="Digitale Speisekarte mit Kategorien, Suche und Allergenen.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/img/hero-restaurant.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://www.example-restaurant.de/menu.html">
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>Speisekarte | Restaurant Musterküche Dorsten</title>
+  </head>
+  <body data-page-title="Speisekarte">
+    <a class="skip-link" href="#main" data-i18n="skipToContent">Zum Inhalt springen</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Startseite">
+          <img data-logo src="assets/img/logo-placeholder.svg" alt="Restaurant Musterküche Logo" width="44" height="44">
+          <span data-restaurant-name>Restaurant Musterküche</span>
+        </a>
+        <button class="nav-toggle" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" data-i18n-label="navMenu"><span></span><span></span><span></span></button>
+        <nav class="site-nav" id="site-nav" data-site-nav aria-label="Hauptnavigation">
+          <a href="index.html" data-i18n="navHome">Start</a>
+          <a href="menu.html" data-i18n="navMenu">Speisekarte</a>
+          <a href="gallery.html" data-i18n="navGallery">Galerie</a>
+          <a href="contact.html" data-i18n="navContact">Kontakt</a>
+          <select class="language-switcher" data-language-switcher aria-label="Sprache wählen">
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+          </select>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero section">
+        <div class="container page-hero-grid">
+          <div>
+            <p class="eyebrow" data-i18n="digitalMenuTitle">Digitale Speisekarte</p>
+            <h1 data-i18n="menuPageTitle">Digitale Speisekarte</h1>
+            <p data-i18n="menuPageText">Alle Gerichte sind nach Kategorien sortiert und können schnell durchsucht werden.</p>
+            <div class="action-row">
+              <a class="button button-primary" href="#" data-whatsapp-link data-i18n="orderWhatsApp">Per WhatsApp bestellen</a>
+              <a class="button button-ghost" href="tel:+49000000000" data-phone-link data-i18n="callNow">Jetzt anrufen</a>
+            </div>
+          </div>
+          <aside class="qr-panel">
+            <img src="assets/img/qr-menu-placeholder.png" alt="QR-Code Platzhalter für menu.html" loading="lazy">
+            <div>
+              <h2 data-i18n="openQrMenu">QR-Speisekarte öffnen</h2>
+              <p data-i18n="qrHint">QR-Code scannen oder Button öffnen.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-compact menu-tools-section">
+        <div class="container menu-tools">
+          <label class="search-field">
+            <span class="sr-only">Gerichte suchen</span>
+            <input type="search" data-menu-search data-i18n-placeholder="searchPlaceholder" placeholder="Gerichte suchen...">
+          </label>
+          <div class="chip-list" data-menu-categories aria-label="Speisekarten-Kategorien"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container" data-menu-list></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="brand footer-brand" href="index.html">
+            <img data-logo src="assets/img/logo-placeholder.svg" alt="Restaurant Musterküche Logo" width="40" height="40">
+            <span data-restaurant-name>Restaurant Musterküche</span>
+          </a>
+          <p data-i18n="footerText">Restaurant Website, digitale Speisekarte und lokale Sichtbarkeit.</p>
+        </div>
+        <div>
+          <h2 data-i18n="openingHoursTitle">Öffnungszeiten</h2>
+          <div data-opening-hours></div>
+        </div>
+        <div>
+          <h2>Links</h2>
+          <a href="impressum.html" data-i18n="navImpressum">Impressum</a>
+          <a href="datenschutz.html" data-i18n="navPrivacy">Datenschutz</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <small>&copy; <span data-current-year></span> <span data-restaurant-name>Restaurant Musterküche</span></small>
+      </div>
+    </footer>
+
+    <script src="data/site-config.js"></script>
+    <script src="data/menu.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/menu.js"></script>
+  </body>
+</html>
