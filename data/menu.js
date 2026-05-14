@@ -10,8 +10,8 @@ window.MENU_DATA = [
           en: "Toasted bread with tomatoes, basil, garlic and olive oil."
         },
         price: "6,90 €",
-        image: "assets/img/food/bruschetta.png",
-        tags: ["vegetarian", "popular"],
+        image: "assets/img/food/photos/bruschetta.jpg",
+        tags: ["vegetarian"],
         allergens: ["Gluten"],
         available: true
       },
@@ -22,7 +22,7 @@ window.MENU_DATA = [
           en: "Olives, grilled vegetables, feta-style cheese, dip and bread."
         },
         price: "10,90 €",
-        image: "assets/img/food/starter.png",
+        image: "assets/img/food/photos/starter.jpg",
         tags: ["vegetarian"],
         allergens: ["Milch", "Gluten"],
         available: true
@@ -40,7 +40,7 @@ window.MENU_DATA = [
           en: "With rice, salad and homemade yogurt dip."
         },
         price: "14,90 €",
-        image: "assets/img/food/grill-plate.png",
+        image: "assets/img/food/photos/grill-plate.jpg",
         tags: ["popular"],
         allergens: ["Milch"],
         available: true
@@ -52,7 +52,7 @@ window.MENU_DATA = [
           en: "Gently grilled, served with vegetables and potatoes."
         },
         price: "18,90 €",
-        image: "assets/img/food/salmon.png",
+        image: "assets/img/food/photos/salmon.jpg",
         tags: [],
         allergens: ["Fisch"],
         available: true
@@ -70,7 +70,7 @@ window.MENU_DATA = [
           en: "Tomato sauce, mozzarella and fresh basil."
         },
         price: "8,90 €",
-        image: "assets/img/food/pizza.png",
+        image: "assets/img/food/photos/pizza-margherita.jpg",
         tags: ["vegetarian"],
         allergens: ["Gluten", "Milch"],
         available: true
@@ -82,7 +82,7 @@ window.MENU_DATA = [
           en: "Tomato sauce, cheese, sucuk, peppers and onions."
         },
         price: "11,90 €",
-        image: "assets/img/food/pizza-sucuk.png",
+        image: "assets/img/food/photos/pizza-sucuk.jpg",
         tags: ["spicy", "popular"],
         allergens: ["Gluten", "Milch"],
         available: true
@@ -100,7 +100,7 @@ window.MENU_DATA = [
           en: "Flatbread with meat, salad and sauce of your choice."
         },
         price: "7,50 €",
-        image: "assets/img/food/doener.png",
+        image: "assets/img/food/photos/doener.jpg",
         tags: ["popular"],
         allergens: ["Gluten", "Milch"],
         available: true
@@ -112,7 +112,7 @@ window.MENU_DATA = [
           en: "Crispy falafel with salad, sesame sauce and fresh herbs."
         },
         price: "6,90 €",
-        image: "assets/img/food/falafel.png",
+        image: "assets/img/food/photos/falafel.jpg",
         tags: ["vegan", "vegetarian"],
         allergens: ["Sesam", "Gluten"],
         available: true
@@ -130,7 +130,7 @@ window.MENU_DATA = [
           en: "Beef, lettuce, tomato, cucumber, onions and burger sauce."
         },
         price: "10,90 €",
-        image: "assets/img/food/burger.png",
+        image: "assets/img/food/photos/burger.jpg",
         tags: ["popular"],
         allergens: ["Gluten", "Ei", "Senf"],
         available: true
@@ -142,7 +142,7 @@ window.MENU_DATA = [
           en: "Vegetable patty, lettuce, tomato, cucumber and homemade sauce."
         },
         price: "9,90 €",
-        image: "assets/img/food/veggie-burger.png",
+        image: "assets/img/food/photos/veggie-burger.jpg",
         tags: ["vegetarian"],
         allergens: ["Gluten", "Ei"],
         available: true
@@ -160,7 +160,7 @@ window.MENU_DATA = [
           en: "Leaf salad, tomatoes, cucumbers, peppers, corn and house dressing."
         },
         price: "7,90 €",
-        image: "assets/img/food/salad.png",
+        image: "assets/img/food/photos/salad.jpg",
         tags: ["vegetarian"],
         allergens: ["Senf"],
         available: true
@@ -172,7 +172,7 @@ window.MENU_DATA = [
           en: "Large salad with grilled chicken, herbs and bread."
         },
         price: "11,90 €",
-        image: "assets/img/food/chicken-salad.png",
+        image: "assets/img/food/photos/chicken-salad.jpg",
         tags: [],
         allergens: ["Gluten"],
         available: true
@@ -190,7 +190,7 @@ window.MENU_DATA = [
           en: "Creamy dessert with coffee, mascarpone and cocoa."
         },
         price: "5,90 €",
-        image: "assets/img/food/tiramisu.png",
+        image: "assets/img/food/photos/tiramisu.jpg",
         tags: ["popular"],
         allergens: ["Milch", "Ei", "Gluten"],
         available: true
@@ -202,7 +202,7 @@ window.MENU_DATA = [
           en: "Sweet pastry with nuts and syrup."
         },
         price: "4,90 €",
-        image: "assets/img/food/baklava.png",
+        image: "assets/img/food/photos/baklava.jpg",
         tags: ["vegetarian"],
         allergens: ["Gluten", "Nüsse"],
         available: true
@@ -220,7 +220,7 @@ window.MENU_DATA = [
           en: "With lemon, mint and a touch of sugar."
         },
         price: "4,20 €",
-        image: "assets/img/food/lemonade.png",
+        image: "assets/img/food/photos/lemonade.jpg",
         tags: ["vegan"],
         allergens: [],
         available: true
@@ -232,7 +232,7 @@ window.MENU_DATA = [
           en: "Refreshing yogurt drink."
         },
         price: "2,50 €",
-        image: "assets/img/food/ayran.png",
+        image: "assets/img/food/photos/ayran.jpg",
         tags: [],
         allergens: ["Milch"],
         available: true

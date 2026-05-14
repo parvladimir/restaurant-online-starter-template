@@ -4,8 +4,17 @@
   const config = window.SITE_CONFIG || {};
   const root = document.documentElement;
   const storageKey = "restaurant-template-language";
+  const themeStorageKey = "restaurant-template-preview-theme";
+  const availableThemes = [
+    "premium-dark",
+    "cocktail-neon",
+    "imbiss-pro",
+    "cafe-minimal",
+    "german-gasthaus"
+  ];
   const supportedLanguages = config.supportedLanguages || ["de", "en"];
   let currentLanguage = localStorage.getItem(storageKey) || config.defaultLanguage || "de";
+  let activeTheme = resolveInitialTheme();
 
   if (!supportedLanguages.includes(currentLanguage)) {
     currentLanguage = config.defaultLanguage || "de";
@@ -59,11 +68,26 @@
       footerText: "Restaurant Website, digitale Speisekarte und lokale Sichtbarkeit.",
       skipToContent: "Zum Inhalt springen",
       languageLabel: "Sprache wählen",
-      heroEyebrow: "Willkommen in der Musterküche",
-      heroLead: "Frische Zutaten, klare Speisekarte und ein zuverlässiger Online-Auftritt für lokale Gastronomie.",
+      heroEyebrow: "Heute frisch in Dorsten",
+      heroLead: "Saftige Grillgerichte, Pizza und frische Klassiker direkt ansehen, anrufen oder per WhatsApp bestellen.",
       specialTitle: "Tagesangebot",
-      whyTitle: "Alles, was Gäste schnell wissen müssen",
-      whyText: "Adresse, Öffnungszeiten, Speisekarte und Kontakt sind klar strukturiert und auch mobil sofort erreichbar.",
+      whyTitle: "Schnell wählen, einfach bestellen",
+      whyText: "Adresse, Öffnungszeiten, Speisekarte und Kontakt sind mobil sofort erreichbar.",
+      orderBadgeFresh: "Frisch zubereitet",
+      orderBadgePickup: "Abholung möglich",
+      orderBadgeDelivery: "Lieferung möglich",
+      trustGoogle: "Google Bewertung",
+      trustFast: "Schnell abholbereit",
+      trustFreshTitle: "Frisch",
+      trustFreshText: "Täglich zubereitet",
+      trustLocalTitle: "Lokal",
+      bestsellerEyebrow: "Am meisten bestellt",
+      bestsellerTitle: "Bestseller, die sofort Hunger machen",
+      bestsellerText: "Große Food-Cards, klare Preise und direkte Wege zur Bestellung.",
+      chooseDish: "Auswählen",
+      mobileOrderCall: "Anrufen",
+      mobileOrderMenu: "Menü",
+      mobileOrderWhatsApp: "WhatsApp",
       menuPageTitle: "Digitale Speisekarte",
       menuPageText: "Alle Gerichte sind nach Kategorien sortiert und können schnell durchsucht werden.",
       galleryPageTitle: "Galerie",
@@ -130,11 +154,26 @@
       footerText: "Restaurant website, digital menu and local visibility.",
       skipToContent: "Skip to content",
       languageLabel: "Choose language",
-      heroEyebrow: "Welcome to Musterküche",
-      heroLead: "Fresh ingredients, a clear menu and a reliable online presence for local hospitality.",
+      heroEyebrow: "Fresh today in Dorsten",
+      heroLead: "Juicy grill dishes, pizza and fresh classics ready to view, call or order via WhatsApp.",
       specialTitle: "Today's special",
-      whyTitle: "Everything guests need quickly",
-      whyText: "Address, opening hours, menu and contact details are clearly structured and easy to reach on mobile.",
+      whyTitle: "Choose quickly, order easily",
+      whyText: "Address, opening hours, menu and contact details are instantly available on mobile.",
+      orderBadgeFresh: "Freshly prepared",
+      orderBadgePickup: "Pickup available",
+      orderBadgeDelivery: "Delivery available",
+      trustGoogle: "Google rating",
+      trustFast: "Fast pickup",
+      trustFreshTitle: "Fresh",
+      trustFreshText: "Prepared daily",
+      trustLocalTitle: "Local",
+      bestsellerEyebrow: "Most ordered",
+      bestsellerTitle: "Bestsellers that make guests hungry",
+      bestsellerText: "Large food cards, clear prices and direct paths to order.",
+      chooseDish: "Choose",
+      mobileOrderCall: "Call",
+      mobileOrderMenu: "Menu",
+      mobileOrderWhatsApp: "WhatsApp",
       menuPageTitle: "Digital menu",
       menuPageText: "All dishes are grouped by category and can be searched quickly.",
       galleryPageTitle: "Gallery",
@@ -164,8 +203,13 @@
     text,
     formatAddress,
     getConfig: () => config,
+    getThemes: () => [...availableThemes],
+    getActiveTheme: () => activeTheme,
+    setTheme,
     setLanguage
   };
+
+  applySelectedTheme();
 
   document.addEventListener("DOMContentLoaded", () => {
     applyTheme();
@@ -179,6 +223,7 @@
     renderSocialLinks();
     setupNavigation();
     setupLanguageSwitcher();
+    setupThemeSwitcher();
     setupForms();
     setCurrentYear();
     setActiveNavLink();
@@ -187,6 +232,41 @@
     renderSchema();
     document.documentElement.lang = currentLanguage;
   });
+
+  function resolveInitialTheme() {
+    const queryTheme = new URLSearchParams(window.location.search).get("theme");
+    if (availableThemes.includes(queryTheme)) {
+      if (config.showThemeSwitcher) {
+        localStorage.setItem(themeStorageKey, queryTheme);
+      }
+      return queryTheme;
+    }
+
+    const storedTheme = localStorage.getItem(themeStorageKey);
+    if (config.showThemeSwitcher && availableThemes.includes(storedTheme)) {
+      return storedTheme;
+    }
+
+    return availableThemes.includes(config.theme) ? config.theme : "premium-dark";
+  }
+
+  function setTheme(theme, options = {}) {
+    if (!availableThemes.includes(theme)) return;
+    activeTheme = theme;
+    if (options.persist !== false && config.showThemeSwitcher) {
+      localStorage.setItem(themeStorageKey, theme);
+    }
+    applySelectedTheme();
+    updateHeroImages();
+    renderSchema();
+  }
+
+  function applySelectedTheme() {
+    if (!document.body) return;
+    availableThemes.forEach((theme) => document.body.classList.remove(`theme-${theme}`));
+    document.body.classList.add(`theme-${activeTheme}`);
+    document.body.dataset.theme = activeTheme;
+  }
 
   function text(value, fallback = "") {
     if (value === null || value === undefined) return fallback;
@@ -251,12 +331,29 @@
       img.alt = `${config.restaurantName || "Restaurant"} Logo`;
     });
 
-    document.querySelectorAll("[data-hero-image]").forEach((img) => {
-      img.src = config.heroImagePath || "assets/img/hero-restaurant.png";
-      img.alt = text(config.slogan, config.restaurantName);
-    });
+    updateHeroImages();
 
     updateStaticTranslations();
+  }
+
+  function updateHeroImages() {
+    document.querySelectorAll("[data-hero-image]").forEach((img) => {
+      const imagePath = getHeroImagePath();
+      img.classList.remove("is-broken");
+      img.classList.toggle("is-theme-placeholder", isDefaultThemePlaceholder(imagePath));
+      img.removeAttribute("aria-hidden");
+      img.onerror = () => {
+        img.classList.add("is-broken");
+        img.setAttribute("aria-hidden", "true");
+      };
+      img.onload = () => {
+        img.classList.remove("is-broken");
+        img.removeAttribute("aria-hidden");
+      };
+      img.alt = text(config.slogan, config.restaurantName);
+      img.decoding = "async";
+      img.src = imagePath;
+    });
   }
 
   function updateStaticTranslations() {
@@ -335,7 +432,7 @@
       container.innerHTML = "";
       (config.reviews || []).forEach((review) => {
         const card = document.createElement("article");
-        card.className = "review-card";
+        card.className = "review-card testimonial-card";
         card.innerHTML = `
           <div class="stars" aria-label="${review.rating} von 5 Sternen">${"★".repeat(review.rating || 5)}</div>
           <p>${text(review.text)}</p>
@@ -349,11 +446,13 @@
   function renderGallery() {
     document.querySelectorAll("[data-gallery]").forEach((container) => {
       container.innerHTML = "";
-      (config.galleryImages || []).forEach((image) => {
+      (config.galleryImages || []).forEach((image, index) => {
+        const loading = index < 6 ? "eager" : "lazy";
+        const fetchPriority = index < 3 ? ' fetchpriority="high"' : "";
         const figure = document.createElement("figure");
         figure.className = "gallery-item";
         figure.innerHTML = `
-          <img src="${image.src}" alt="${text(image.alt)}" loading="lazy">
+          <img src="${image.src}" alt="${text(image.alt)}" loading="${loading}" decoding="async"${fetchPriority}>
           <figcaption>${text(image.alt)}</figcaption>
         `;
         container.appendChild(figure);
@@ -422,6 +521,29 @@
     });
   }
 
+  function setupThemeSwitcher() {
+    if (!config.showThemeSwitcher || document.querySelector("[data-theme-switcher]")) return;
+
+    const switcher = document.createElement("aside");
+    switcher.className = "theme-switcher";
+    switcher.dataset.themeSwitcher = "";
+    switcher.setAttribute("aria-label", "Design-Theme Vorschau");
+    switcher.innerHTML = `
+      <label>
+        <span>Theme Preview</span>
+        <select data-theme-select>
+          ${availableThemes.map((theme) => `<option value="${theme}">${formatThemeName(theme)}</option>`).join("")}
+        </select>
+      </label>
+      <a href="theme-preview.html">Alle Themes</a>
+    `;
+
+    const select = switcher.querySelector("[data-theme-select]");
+    select.value = activeTheme;
+    select.addEventListener("change", (event) => setTheme(event.target.value));
+    document.body.appendChild(switcher);
+  }
+
   function setupForms() {
     document.querySelectorAll("[data-form-endpoint]").forEach((form) => {
       if (!config.formEndpoint) {
@@ -473,9 +595,11 @@
     setMeta("og:description", description, "property");
     setMeta("og:type", "website", "property");
     setMeta("og:url", canonical, "property");
+    setMeta("og:image", absoluteUrl(getHeroImagePath()), "property");
     setMeta("twitter:card", "summary_large_image");
     setMeta("twitter:title", document.title);
     setMeta("twitter:description", description);
+    setMeta("twitter:image", absoluteUrl(getHeroImagePath()));
 
     let canonicalLink = document.querySelector("link[rel='canonical']");
     if (!canonicalLink) {
@@ -504,7 +628,7 @@
       name: config.restaurantName,
       description: text(config.seo?.description, text(config.slogan)),
       servesCuisine: text(config.cuisineType),
-      image: absoluteUrl(config.heroImagePath),
+      image: absoluteUrl(getHeroImagePath()),
       telephone: config.phone,
       email: config.email,
       url: config.seo?.canonicalUrl || window.location.href,
@@ -552,6 +676,21 @@
     } catch (error) {
       return path;
     }
+  }
+
+  function getHeroImagePath() {
+    return config.themeHeroImages?.[activeTheme] || config.heroImagePath || "assets/img/hero-food-order.jpg";
+  }
+
+  function isDefaultThemePlaceholder(path) {
+    return /^assets\/img\/hero-(premium-dark|cocktail-neon|imbiss-pro|cafe-minimal|german-gasthaus)\.jpg$/.test(String(path || ""));
+  }
+
+  function formatThemeName(theme) {
+    return theme
+      .split("-")
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(" ");
   }
 
   function formatAddress() {

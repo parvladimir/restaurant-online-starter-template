@@ -1,6 +1,8 @@
 window.SITE_CONFIG = {
   defaultLanguage: "de",
   supportedLanguages: ["de", "en"],
+  theme: "premium-dark",
+  showThemeSwitcher: true,
 
   restaurantName: "Restaurant Musterküche",
   slogan: {
@@ -13,7 +15,14 @@ window.SITE_CONFIG = {
   },
 
   logoPath: "assets/img/logo-placeholder.svg",
-  heroImagePath: "assets/img/hero-restaurant.png",
+  heroImagePath: "assets/img/hero-food-order.jpg",
+  themeHeroImages: {
+    "premium-dark": "assets/img/hero-premium-dark.jpg",
+    "cocktail-neon": "assets/img/hero-cocktail-neon.jpg",
+    "imbiss-pro": "assets/img/hero-imbiss-pro.jpg",
+    "cafe-minimal": "assets/img/hero-cafe-minimal.jpg",
+    "german-gasthaus": "assets/img/hero-german-gasthaus.jpg"
+  },
   primaryColor: "#8a2f1c",
   secondaryColor: "#173f35",
   accentColor: "#d6a247",
@@ -109,42 +118,42 @@ window.SITE_CONFIG = {
 
   galleryImages: [
     {
-      src: "assets/img/gallery/interior.png",
+      src: "assets/img/gallery/interior.jpg",
       alt: {
         de: "Gemütlicher Restaurantbereich",
         en: "Cozy restaurant interior"
       }
     },
     {
-      src: "assets/img/gallery/grill.png",
+      src: "assets/img/gallery/grill.jpg",
       alt: {
         de: "Frisch gegrillte Spezialitäten",
         en: "Fresh grilled specialties"
       }
     },
     {
-      src: "assets/img/gallery/table.png",
+      src: "assets/img/gallery/table.jpg",
       alt: {
         de: "Gedeckter Tisch im Restaurant",
         en: "Set table in the restaurant"
       }
     },
     {
-      src: "assets/img/gallery/dessert.png",
+      src: "assets/img/gallery/dessert.jpg",
       alt: {
         de: "Dessert aus der Musterküche",
         en: "Dessert from Musterküche"
       }
     },
     {
-      src: "assets/img/gallery/drinks.png",
+      src: "assets/img/gallery/drinks.jpg",
       alt: {
         de: "Erfrischende Getränke",
         en: "Refreshing drinks"
       }
     },
     {
-      src: "assets/img/gallery/front.png",
+      src: "assets/img/gallery/front.jpg",
       alt: {
         de: "Restaurant Außenansicht",
         en: "Restaurant exterior"

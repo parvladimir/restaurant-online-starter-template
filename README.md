@@ -76,7 +76,7 @@ slogan: {
   name: { de: "Pizza Margherita", en: "Pizza Margherita" },
   description: { de: "...", en: "..." },
   price: "8,90 €",
-  image: "assets/img/food/pizza.png",
+  image: "assets/img/food/photos/pizza-margherita.jpg",
   tags: ["vegetarian", "popular"],
   allergens: ["Gluten", "Milch"],
   available: true
@@ -89,7 +89,7 @@ slogan: {
 
 Замените файлы в папках:
 
-- `assets/img/hero-restaurant.png`
+- `assets/img/hero-food-order.jpg`
 - `assets/img/food/`
 - `assets/img/gallery/`
 - `assets/img/logo-placeholder.svg`
@@ -197,3 +197,65 @@ $to = 'info@musterkueche.de';
 - требования к онлайн-заказу, доставке и бронированию.
 
 Юридические страницы в шаблоне являются только заготовками и не являются юридически полной консультацией.
+
+## 10. Рекомендации по дизайн-темам
+
+Тема сайта выбирается в `data/site-config.js`:
+
+```js
+theme: "premium-dark",
+showThemeSwitcher: true
+```
+
+Доступные темы:
+
+- `premium-dark`: best for fine dining, steakhouse, wine bar, premium restaurant.
+- `cocktail-neon`: best for cocktail bars, lounges, night bars, shisha bars, event bars.
+- `imbiss-pro`: best for döner, burger, pizza, grill, chicken, snack bars and takeaway.
+- `cafe-minimal`: best for cafés, bakeries, brunch places, breakfast restaurants and ice cream cafés.
+- `german-gasthaus`: best for German restaurants, Biergarten, local family restaurants and traditional cuisine.
+
+Для разработки можно оставить `showThemeSwitcher: true`. Тогда в правом нижнем углу появится переключатель тем. Перед передачей сайта клиенту обычно ставят:
+
+```js
+showThemeSwitcher: false
+```
+
+Страница для сравнения всех тем:
+
+```text
+theme-preview.html
+```
+
+Быстрый preview конкретной темы:
+
+```text
+index.html?theme=cafe-minimal
+```
+
+## 11. Design Quality Check
+
+Template now uses local demo stock photos for the food-ordering hero, all menu cards, theme hero images and the gallery:
+
+- `assets/img/hero-food-order.jpg`
+- `assets/img/food/photos/`
+- `assets/img/gallery/*.jpg`
+- `assets/img/hero-*.jpg`
+
+The demo photos are local stock photos from Pexels. Pexels allows website/template usage according to its license page, but before delivering a client website you should replace them with real client photos or verify image licenses/usage rights again: https://www.pexels.com/license/
+
+Food websites depend heavily on real, appetizing images.
+
+Этот шаблон можно показывать клиентам как демо, но для реального ресторанного сайта обязательно нужны хорошие фотографии.
+
+Перед передачей проекта клиенту проверьте:
+
+- заменить demo hero placeholders на реальные фото ресторана, еды, напитков или интерьера;
+- использовать разные фото для выбранной темы, например вечерние фото для `premium-dark`, барные фото для `cocktail-neon`, крупные блюда для `imbiss-pro`;
+- проверить, что главное фото не слишком темное, не размытое и не выглядит как случайная stock-картинка;
+- заменить изображения блюд в `assets/img/food/`;
+- заменить галерею в `assets/img/gallery/`;
+- проверить мобильный первый экран, потому что ресторанные сайты часто открывают со смартфона;
+- проверить читаемость Impressum и Datenschutz в выбранной теме.
+
+Цель дизайна: каждая тема должна выглядеть как отдельный демо-сайт, который фрилансер может показать разным владельцам ресторанов в Германии.

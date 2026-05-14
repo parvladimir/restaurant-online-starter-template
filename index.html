@@ -9,7 +9,7 @@
     <meta property="og:title" content="Restaurant Musterküche Dorsten | Mediterrane Küche & Grill">
     <meta property="og:description" content="Mediterrane Küche, Grillgerichte, digitale Speisekarte, Abholung und Lieferung in Dorsten.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/img/hero-restaurant.png">
+    <meta property="og:image" content="assets/img/hero-food-order.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Restaurant Musterküche Dorsten">
     <meta name="twitter:description" content="Mediterrane Küche & Grill in Dorsten.">
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <title>Restaurant Musterküche Dorsten | Mediterrane Küche & Grill</title>
   </head>
-  <body>
+  <body class="home-page">
     <a class="skip-link" href="#main" data-i18n="skipToContent">Zum Inhalt springen</a>
 
     <header class="site-header">
@@ -48,48 +48,93 @@
     </header>
 
     <main id="main">
-      <section class="hero section">
-        <div class="container hero-grid">
-          <div class="hero-content">
-            <p class="eyebrow" data-i18n="heroEyebrow">Willkommen in der Musterküche</p>
+      <section class="hero order-hero section">
+        <div class="container hero-grid hero-inner order-hero-inner">
+          <div class="hero-content order-hero-content">
+            <p class="eyebrow" data-i18n="heroEyebrow">Heute frisch in Dorsten</p>
             <h1><span data-restaurant-name>Restaurant Musterküche</span></h1>
             <p class="hero-slogan" data-slogan>Mediterrane Küche & Grill in Dorsten</p>
-            <p data-i18n="heroLead">Frische Zutaten, klare Speisekarte und ein zuverlässiger Online-Auftritt für lokale Gastronomie.</p>
+            <p data-i18n="heroLead">Saftige Grillgerichte, Pizza und frische Klassiker direkt ansehen, anrufen oder per WhatsApp bestellen.</p>
+            <div class="hero-trust-row" aria-label="Bestellvorteile">
+              <span data-i18n="orderBadgeFresh">Frisch zubereitet</span>
+              <span data-i18n="orderBadgePickup">Abholung möglich</span>
+              <span data-i18n="orderBadgeDelivery">Lieferung möglich</span>
+            </div>
             <div class="action-row">
               <a class="button button-primary" href="tel:+49000000000" data-phone-link data-i18n="callNow">Jetzt anrufen</a>
               <a class="button button-secondary" href="menu.html" data-i18n="viewMenu">Speisekarte ansehen</a>
-              <a class="button button-ghost" href="#" data-route-link data-i18n="planRoute">Route planen</a>
+              <a class="button button-ghost" href="#" data-whatsapp-link data-i18n="orderWhatsApp">Per WhatsApp bestellen</a>
             </div>
           </div>
-          <div class="hero-media">
-            <img data-hero-image src="assets/img/hero-restaurant.png" alt="Mediterrane Gerichte auf einem Tisch" loading="eager">
+
+          <div class="hero-media order-hero-media">
+            <img src="assets/img/food/photos/grill-plate.jpg" alt="Gegrilltes Gericht mit Beilagen" loading="eager">
+            <div class="hero-order-card" aria-label="Top Angebot">
+              <span data-i18n="specialIntro">Heute empfohlen</span>
+              <strong data-special-title>Tagesangebot</strong>
+              <em data-special-price>12,90 €</em>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section section-compact">
-        <div class="container special-band">
+      <section class="trust-strip" aria-label="Warum Gäste bestellen">
+        <div class="container trust-grid">
+          <div class="trust-item">
+            <strong>4,8/5</strong>
+            <span data-i18n="trustGoogle">Google Bewertung</span>
+          </div>
+          <div class="trust-item">
+            <strong>20-30 Min.</strong>
+            <span data-i18n="trustFast">Schnell abholbereit</span>
+          </div>
+          <div class="trust-item">
+            <strong data-i18n="trustFreshTitle">Frisch</strong>
+            <span data-i18n="trustFreshText">Täglich zubereitet</span>
+          </div>
+          <div class="trust-item">
+            <strong data-i18n="trustLocalTitle">Lokal</strong>
+            <span>Dorsten</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-compact offer-section">
+        <div class="container special-band offer-card order-offer">
           <div>
             <p class="eyebrow" data-i18n="specialIntro">Heute empfohlen</p>
             <h2 data-special-title>Tagesangebot</h2>
             <p data-special-text>Gegrillter Hähnchenspieß mit Reis, Salat und hausgemachtem Dip.</p>
           </div>
           <strong data-special-price>12,90 €</strong>
+          <a class="button button-primary" href="#" data-whatsapp-link data-i18n="orderWhatsApp">Per WhatsApp bestellen</a>
         </div>
       </section>
 
-      <section class="section">
-        <div class="container two-column">
+      <section class="section section-muted bestseller-section" id="bestsellers">
+        <div class="container section-heading section-header">
+          <p class="eyebrow" data-i18n="bestsellerEyebrow">Am meisten bestellt</p>
+          <h2 data-i18n="bestsellerTitle">Bestseller, die sofort Hunger machen</h2>
+          <p data-i18n="bestsellerText">Große Food-Cards, klare Preise und direkte Wege zur Bestellung.</p>
+        </div>
+        <div class="container menu-grid preview-grid menu-preview bestseller-grid" data-menu-preview></div>
+        <div class="container center-actions">
+          <a class="button button-primary" href="menu.html" data-i18n="viewMenu">Speisekarte ansehen</a>
+        </div>
+      </section>
+
+      <section class="section digital-menu-section">
+        <div class="container two-column digital-order-grid">
           <div>
             <p class="eyebrow" data-i18n="digitalMenuTitle">Digitale Speisekarte</p>
-            <h2 data-i18n="whyTitle">Alles, was Gäste schnell wissen müssen</h2>
-            <p data-i18n="whyText">Adresse, Öffnungszeiten, Speisekarte und Kontakt sind klar strukturiert und auch mobil sofort erreichbar.</p>
+            <h2 data-i18n="whyTitle">Schnell wählen, einfach bestellen</h2>
+            <p data-i18n="whyText">Adresse, Öffnungszeiten, Speisekarte und Kontakt sind mobil sofort erreichbar.</p>
             <div class="action-row">
               <a class="button button-primary" href="menu.html" data-i18n="openQrMenu">QR-Speisekarte öffnen</a>
-              <a class="button button-ghost" href="#" data-whatsapp-link data-i18n="orderWhatsApp">Per WhatsApp bestellen</a>
+              <a class="button button-ghost" href="#" data-route-link data-i18n="planRoute">Route planen</a>
             </div>
           </div>
-          <aside class="qr-panel" aria-labelledby="qr-title">
+          <aside class="qr-panel order-qr-panel" aria-labelledby="qr-title">
             <img src="assets/img/qr-menu-placeholder.png" alt="QR-Code Platzhalter für die digitale Speisekarte" loading="lazy">
             <div>
               <h3 id="qr-title" data-i18n="digitalMenuTitle">Digitale Speisekarte</h3>
@@ -100,26 +145,14 @@
         </div>
       </section>
 
-      <section class="section section-muted">
-        <div class="container section-heading">
-          <p class="eyebrow" data-i18n="menuPreviewTitle">Beliebte Gerichte</p>
-          <h2 data-i18n="viewMenu">Speisekarte ansehen</h2>
-          <p data-i18n="menuPreviewText">Ein schneller Einblick in die digitale Speisekarte.</p>
-        </div>
-        <div class="container menu-grid preview-grid" data-menu-preview></div>
-        <div class="container center-actions">
-          <a class="button button-primary" href="menu.html" data-i18n="viewMenu">Speisekarte ansehen</a>
-        </div>
-      </section>
-
       <section class="section">
         <div class="container info-layout">
-          <div>
+          <div class="info-card business-card">
             <p class="eyebrow">Google Business</p>
             <h2 data-i18n="businessInfoTitle">Restaurant-Informationen</h2>
             <div class="info-list" data-business-info></div>
           </div>
-          <div class="hours-card">
+          <div class="hours-card opening-hours info-card">
             <h3 data-i18n="openingHoursTitle">Öffnungszeiten</h3>
             <div data-opening-hours></div>
           </div>
@@ -127,14 +160,14 @@
       </section>
 
       <section class="section section-muted">
-        <div class="container section-heading">
+        <div class="container section-heading section-header">
           <p class="eyebrow">Bewertungen</p>
           <h2 data-i18n="reviewsTitle">Stimmen unserer Gäste</h2>
         </div>
         <div class="container reviews-grid" data-reviews></div>
       </section>
 
-      <section class="section">
+      <section class="section contact-section">
         <div class="container two-column">
           <div>
             <p class="eyebrow" data-i18n="routeTitle">Anfahrt</p>
@@ -146,14 +179,20 @@
               <a class="button button-secondary" href="contact.html" data-i18n="reservation">Reservierung</a>
             </div>
           </div>
-          <div class="map-frame">
+          <div class="map-frame info-card">
             <iframe data-map-embed title="Karte Restaurant Musterküche" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
+    <nav class="mobile-order-bar" aria-label="Schnell bestellen">
+      <a href="tel:+49000000000" data-phone-link data-i18n="mobileOrderCall">Anrufen</a>
+      <a href="menu.html" data-i18n="mobileOrderMenu">Menü</a>
+      <a href="#" data-whatsapp-link data-i18n="mobileOrderWhatsApp">WhatsApp</a>
+    </nav>
+
+    <footer class="site-footer footer">
       <div class="container footer-grid">
         <div>
           <a class="brand footer-brand" href="index.html">

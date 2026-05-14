@@ -120,9 +120,10 @@
       }));
   }
 
-  function createMenuItem(item) {
+  function createMenuItem(item, options = {}) {
     const article = document.createElement("article");
-    article.className = "menu-item";
+    article.className = "menu-item menu-card";
+    if (options.preview) article.classList.add("is-preview-card");
     if (!item.available) article.classList.add("is-unavailable");
 
     const tags = (item.tags || []).map((tag) => `<span class="tag">${translate(tag)}</span>`).join("");
@@ -144,6 +145,7 @@
         ${tags ? `<div class="tag-list">${tags}</div>` : ""}
         ${allergens}
         ${item.available ? "" : `<p class="unavailable">${translate("unavailableItem")}</p>`}
+        ${options.preview ? `<a class="menu-card-cta" href="menu.html">${translate("chooseDish")}</a>` : ""}
       </div>
     `;
 
@@ -158,7 +160,7 @@
         .slice(0, 4);
 
       container.innerHTML = "";
-      popularItems.forEach((item) => container.appendChild(createMenuItem(item)));
+      popularItems.forEach((item) => container.appendChild(createMenuItem(item, { preview: true })));
     });
   }
 })();

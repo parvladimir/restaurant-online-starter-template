@@ -9,7 +9,7 @@
     <meta property="og:title" content="Kontakt | Restaurant Musterküche Dorsten">
     <meta property="og:description" content="Kontakt, Reservierung, WhatsApp und Anfahrt.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/img/hero-restaurant.png">
+    <meta property="og:image" content="assets/img/hero-food-order.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://www.example-restaurant.de/contact.html">
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -34,7 +34,7 @@
 
     <main id="main">
       <section class="page-hero section">
-        <div class="container narrow">
+        <div class="container narrow section-header">
           <p class="eyebrow" data-i18n="navContact">Kontakt</p>
           <h1 data-i18n="contactPageTitle">Kontakt & Reservierung</h1>
           <p data-i18n="contactPageText">Für Reservierungen, Bestellungen oder Fragen erreichen Sie uns telefonisch, per WhatsApp oder über das Formular.</p>
@@ -45,9 +45,9 @@
         </div>
       </section>
 
-      <section class="section">
+      <section class="section contact-section">
         <div class="container contact-grid">
-          <form class="contact-form" action="php/contact.php" method="post" data-form-endpoint>
+          <form class="contact-form info-card" action="php/contact.php" method="post" data-form-endpoint>
             <input type="hidden" name="_subject" value="Neue Anfrage über die Restaurant Website">
             <div class="field-grid">
               <label>
@@ -85,8 +85,8 @@
             <p class="form-hint" data-i18n="formHint">Wir melden uns schnellstmöglich zurück.</p>
           </form>
 
-          <aside class="contact-aside">
-            <div class="hours-card">
+          <aside class="contact-aside info-card">
+            <div class="hours-card opening-hours info-card">
               <h2 data-i18n="openingHoursTitle">Öffnungszeiten</h2>
               <div data-opening-hours></div>
             </div>
@@ -106,7 +106,7 @@
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer footer">
       <div class="container footer-grid">
         <div><a class="brand footer-brand" href="index.html"><img data-logo src="assets/img/logo-placeholder.svg" alt="Restaurant Musterküche Logo" width="40" height="40"><span data-restaurant-name>Restaurant Musterküche</span></a><p data-i18n="footerText">Restaurant Website, digitale Speisekarte und lokale Sichtbarkeit.</p></div>
         <div><h2 data-i18n="contactTitle">Kontakt</h2><p><span data-address>Musterstraße 1, 46282 Dorsten</span><br><a data-phone-link href="tel:+49000000000" data-phone>+49 000 000000</a></p></div>
