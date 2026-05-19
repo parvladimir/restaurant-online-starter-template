@@ -81,8 +81,8 @@
       <section class="trust-strip" aria-label="Warum Gäste bestellen">
         <div class="container trust-grid">
           <div class="trust-item">
-            <strong>4,8/5</strong>
-            <span data-i18n="trustGoogle">Google Bewertung</span>
+            <strong data-google-rating-full>4,1/5</strong>
+            <span data-google-review-count>Google Bewertungen</span>
           </div>
           <div class="trust-item">
             <strong>20-30 Min.</strong>
@@ -161,8 +161,20 @@
 
       <section class="section section-muted">
         <div class="container section-heading section-header">
-          <p class="eyebrow">Bewertungen</p>
+          <p class="eyebrow" data-i18n="googleReviewsEyebrow">Google Bewertungen</p>
           <h2 data-i18n="reviewsTitle">Stimmen unserer Gäste</h2>
+        </div>
+        <div class="container google-review-panel info-card" data-google-review-panel>
+          <div>
+            <p class="eyebrow" data-i18n="googleReviewsEyebrow">Google Bewertungen</p>
+            <h3 data-i18n="googleReviewsTitle">Bewertungen direkt auf Google sammeln</h3>
+            <p data-i18n="googleReviewsText">Öffentliche Bewertungen werden über Google Maps abgegeben. Der Button öffnet das Google-Profil, damit Gäste dort ihre Rezension schreiben können.</p>
+          </div>
+          <div class="google-review-score" aria-label="Google Bewertung">
+            <strong data-google-rating>4,1</strong>
+            <span data-google-review-count>Google Bewertungen</span>
+          </div>
+          <a class="button button-primary" href="#" data-google-review-link data-i18n="googleReviewButton">Bewertung bei Google schreiben</a>
         </div>
         <div class="container reviews-grid" data-reviews></div>
       </section>

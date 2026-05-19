@@ -246,6 +246,27 @@ The demo photos are local stock photos from Pexels. Pexels allows website/templa
 
 Food websites depend heavily on real, appetizing images.
 
+## 12. Google Reviews
+
+The template has a Google review block on the homepage and contact page. Edit these values in `data/site-config.js`:
+
+```js
+googlePlaceId: "",
+googleReviewLink: "https://www.google.com/maps/...",
+googleRating: 4.1,
+googleReviewCount: 549
+```
+
+If you have the real Google Place ID, enter it in `googlePlaceId`. The template will use the direct Google review URL:
+
+```text
+https://search.google.com/local/writereview?placeid=PLACE_ID
+```
+
+A static website cannot publish reviews into Google Maps by itself. Guests must submit public reviews inside Google/Google Maps. The website button starts that flow by opening the Google profile or Google review form.
+
+Selected Google review excerpts can be maintained manually in `reviews`. Automatic live loading from Google requires a backend service with Google Business Profile API access; do not expose API keys in static frontend code.
+
 Этот шаблон можно показывать клиентам как демо, но для реального ресторанного сайта обязательно нужны хорошие фотографии.
 
 Перед передачей проекта клиенту проверьте:

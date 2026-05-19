@@ -43,6 +43,12 @@
       addressTitle: "Adresse",
       routeTitle: "Anfahrt",
       reviewsTitle: "Stimmen unserer Gäste",
+      googleReviewsEyebrow: "Google Bewertungen",
+      googleReviewsTitle: "Bewertungen direkt auf Google sammeln",
+      googleReviewsText: "Öffentliche Bewertungen werden über Google Maps abgegeben. Der Button öffnet das Google-Profil, damit Gäste dort ihre Rezension schreiben können.",
+      googleReviewButton: "Bewertung bei Google schreiben",
+      googleReviewCountLabel: "Google Bewertungen",
+      googleReviewFallback: "Google Profil öffnen",
       businessInfoTitle: "Restaurant-Informationen",
       cuisine: "Küche",
       delivery: "Lieferung",
@@ -129,6 +135,12 @@
       addressTitle: "Address",
       routeTitle: "Directions",
       reviewsTitle: "Guest reviews",
+      googleReviewsEyebrow: "Google reviews",
+      googleReviewsTitle: "Collect reviews directly on Google",
+      googleReviewsText: "Public reviews are submitted through Google Maps. The button opens the Google profile so guests can write their review there.",
+      googleReviewButton: "Write a Google review",
+      googleReviewCountLabel: "Google reviews",
+      googleReviewFallback: "Open Google profile",
       businessInfoTitle: "Restaurant information",
       cuisine: "Cuisine",
       delivery: "Delivery",
@@ -217,6 +229,7 @@
     renderOpeningHours();
     renderContactLinks();
     renderReviews();
+    renderGoogleReviews();
     renderGallery();
     renderSpecialOffer();
     renderBusinessInfo();
@@ -288,6 +301,7 @@
     renderConfigText();
     renderOpeningHours();
     renderReviews();
+    renderGoogleReviews();
     renderGallery();
     renderSpecialOffer();
     renderBusinessInfo();
@@ -431,15 +445,42 @@
     document.querySelectorAll("[data-reviews]").forEach((container) => {
       container.innerHTML = "";
       (config.reviews || []).forEach((review) => {
+        const source = review.source ? `<span>${text(review.source)}</span>` : "";
+        const date = review.date ? `<time datetime="${review.date}">${formatReviewDate(review.date)}</time>` : "";
+        const meta = source || date ? `<div class="review-meta">${source}${date}</div>` : "";
         const card = document.createElement("article");
         card.className = "review-card testimonial-card";
         card.innerHTML = `
           <div class="stars" aria-label="${review.rating} von 5 Sternen">${"★".repeat(review.rating || 5)}</div>
+          ${meta}
           <p>${text(review.text)}</p>
           <strong>${review.name}</strong>
         `;
         container.appendChild(card);
       });
+    });
+  }
+
+  function renderGoogleReviews() {
+    const href = getGoogleReviewHref();
+    const rating = formatRating(config.googleRating);
+    const ratingFull = rating ? `${rating}/5` : "";
+    const count = config.googleReviewCount ? `${config.googleReviewCount} ${t("googleReviewCountLabel")}` : t("googleReviewFallback");
+
+    setText("[data-google-rating]", rating);
+    setText("[data-google-rating-full]", ratingFull);
+    setText("[data-google-review-count]", count);
+
+    document.querySelectorAll("[data-google-review-link]").forEach((link) => {
+      link.href = href;
+      if (href.startsWith("http")) {
+        link.target = "_blank";
+        link.rel = "noopener";
+      }
+    });
+
+    document.querySelectorAll("[data-google-review-panel]").forEach((panel) => {
+      panel.hidden = !href || href === "#";
     });
   }
 
@@ -651,6 +692,31 @@
       acceptsReservations: Boolean(config.reservationEnabled)
     };
 
+    const ratingValue = Number(String(config.googleRating || "").replace(",", "."));
+    if (Number.isFinite(ratingValue) && config.googleReviewCount) {
+      schema.aggregateRating = {
+        "@type": "AggregateRating",
+        ratingValue,
+        reviewCount: Number(config.googleReviewCount)
+      };
+    }
+
+    if (Array.isArray(config.reviews) && config.reviews.length) {
+      schema.review = config.reviews.slice(0, 3).map((review) => ({
+        "@type": "Review",
+        author: {
+          "@type": "Person",
+          name: review.name || "Gast"
+        },
+        reviewBody: text(review.text),
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: review.rating || 5,
+          bestRating: 5
+        }
+      }));
+    }
+
     let script = document.querySelector("#restaurant-schema");
     if (!script) {
       script = document.createElement("script");
@@ -676,6 +742,29 @@
     } catch (error) {
       return path;
     }
+  }
+
+  function getGoogleReviewHref() {
+    if (config.googlePlaceId) {
+      return `https://search.google.com/local/writereview?placeid=${encodeURIComponent(config.googlePlaceId)}`;
+    }
+    return config.googleReviewLink || config.googleMapsLink || "#";
+  }
+
+  function formatRating(value) {
+    const number = Number(String(value || "").replace(",", "."));
+    if (!Number.isFinite(number) || number <= 0) return "";
+    const rounded = number.toFixed(1);
+    return currentLanguage === "de" ? rounded.replace(".", ",") : rounded;
+  }
+
+  function formatReviewDate(value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    return date.toLocaleDateString(currentLanguage === "de" ? "de-DE" : "en-US", {
+      month: "short",
+      year: "numeric"
+    });
   }
 
   function getHeroImagePath() {

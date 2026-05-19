@@ -247,6 +247,7 @@ select {
 }
 
 .header-inner {
+  min-width: 0;
   min-height: var(--header-height);
   display: flex;
   align-items: center;
@@ -257,6 +258,8 @@ select {
 .brand {
   display: inline-flex;
   align-items: center;
+  min-width: 0;
+  flex: 0 1 auto;
   gap: 12px;
   color: var(--color-secondary);
   font-weight: 850;
@@ -264,6 +267,7 @@ select {
 }
 
 .brand img {
+  flex: 0 0 46px;
   width: 46px;
   height: 46px;
   object-fit: contain;
@@ -272,8 +276,10 @@ select {
 }
 
 .brand span {
+  display: block;
   max-width: 190px;
   line-height: 1.12;
+  overflow-wrap: anywhere;
 }
 
 .nav-toggle {
@@ -684,6 +690,52 @@ p {
 .reviews-grid {
   display: grid;
   gap: 18px;
+}
+
+.google-review-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: clamp(16px, 3vw, 28px);
+  margin-bottom: 22px;
+}
+
+.google-review-panel[hidden] {
+  display: none;
+}
+
+.google-review-score {
+  display: grid;
+  min-width: 128px;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--color-accent) 13%, var(--color-surface));
+  text-align: center;
+}
+
+.google-review-score strong {
+  color: var(--color-primary);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+}
+
+.google-review-score span,
+.review-meta {
+  color: var(--color-soft-text);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.review-meta span {
+  color: var(--color-primary);
 }
 
 .stars {
@@ -1897,7 +1949,12 @@ body.theme-german-gasthaus .hero-media::after {
   }
 
   .brand span {
-    max-width: 150px;
+    max-width: none;
+  }
+
+  .brand {
+    flex: 1 1 auto;
+    max-width: calc(100% - 64px);
   }
 
   .nav-toggle {
@@ -2509,8 +2566,17 @@ body.home-page .order-hero-media::after {
   .home-page .order-hero-inner,
   .home-page .bestseller-grid,
   .trust-grid,
-  .home-page .order-offer {
+  .home-page .order-offer,
+  .google-review-panel {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .google-review-panel {
+    align-items: stretch;
+  }
+
+  .google-review-score {
+    text-align: left;
   }
 
   .home-page .order-hero-content {

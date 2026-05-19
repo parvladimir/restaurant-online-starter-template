@@ -86,3 +86,24 @@ Demo-Fotos fuer Gerichte und Galerie liegen lokal in:
 Die Demo-Fotos sind lokale Stockfotos aus Pexels. Pexels erlaubt laut Lizenzseite die Nutzung in Websites und Templates ohne Pflicht zur Namensnennung, trotzdem sollten vor Kundenlieferung echte Restaurantfotos eingesetzt oder die Nutzungsrechte/Lizenzen nochmals geprueft werden: https://www.pexels.com/license/
 
 Gute Food-Fotos sind fuer Restaurant-Websites sehr wichtig.
+
+## Google-Bewertungen
+
+Die Startseite und Kontaktseite zeigen einen Google-Bewertungsblock. Die Werte werden in `data/site-config.js` gepflegt:
+
+```js
+googlePlaceId: "",
+googleReviewLink: "https://www.google.com/maps/...",
+googleRating: 4.1,
+googleReviewCount: 549
+```
+
+Wenn eine echte Google Place ID vorhanden ist, `googlePlaceId` eintragen. Dann erzeugt das Template automatisch einen direkten Link:
+
+```text
+https://search.google.com/local/writereview?placeid=PLACE_ID
+```
+
+Wichtig: Eine normale statische Website kann neue Bewertungen nicht selbst in Google Maps veroeffentlichen. Gaeste muessen die Bewertung in Google/Google Maps absenden. Der Button auf der Website fuehrt deshalb zum Google-Profil bzw. zur Google-Bewertungsmaske.
+
+Ausgewaehlte Google-Rezensionen koennen manuell in `reviews` eingetragen werden. Fuer ein automatisches Live-Auslesen echter Google-Bewertungen ist ein eigener Backend-Service mit Google Business Profile API noetig; API-Schluessel duerfen nicht im statischen Frontend liegen.
