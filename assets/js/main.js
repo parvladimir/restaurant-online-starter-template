@@ -678,21 +678,24 @@
       </a>
     `;
 
-    const mobileSwitcher = document.createElement("aside");
+    const mobileSwitcher = document.createElement("details");
     mobileSwitcher.className = "mobile-theme-chooser";
     mobileSwitcher.dataset.mobileThemeSwitcher = "";
     mobileSwitcher.setAttribute("aria-label", "Mobile Design-Theme Vorschau");
     mobileSwitcher.innerHTML = `
-      <div class="mobile-theme-chooser-head">
-        <span>Design-Vorschau</span>
-        <a href="theme-preview.html">Alle</a>
+      <summary>Design</summary>
+      <div class="mobile-theme-chooser-panel">
+        <div class="mobile-theme-chooser-head">
+          <span>Theme testen</span>
+          <a href="theme-preview.html">Alle</a>
+        </div>
+        <label>
+          <span>Theme auswählen</span>
+          <select data-theme-select>
+            ${optionsMarkup}
+          </select>
+        </label>
       </div>
-      <label>
-        <span>Theme auswählen</span>
-        <select data-theme-select>
-          ${optionsMarkup}
-        </select>
-      </label>
     `;
 
     document.body.classList.add("has-theme-switcher");
@@ -703,7 +706,11 @@
     syncThemeSelects();
 
     document.querySelectorAll("[data-theme-select]").forEach((select) => {
-      select.addEventListener("change", (event) => setTheme(event.target.value));
+      select.addEventListener("change", (event) => {
+        setTheme(event.target.value);
+        const mobileDetails = event.target.closest(".mobile-theme-chooser");
+        if (mobileDetails) mobileDetails.open = false;
+      });
     });
   }
 

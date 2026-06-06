@@ -40,7 +40,7 @@ Der Entwickler-Preview-Switcher wird ebenfalls in `data/site-config.js` aktivier
 showThemeSwitcher: true
 ```
 
-Mit `showThemeSwitcher: true` ist die Theme-Auswahl auch auf Smartphones sichtbar. Auf mobilen Viewports erscheint unter der Kopfzeile eine eigene Design-Vorschau-Leiste mit Theme-Auswahl und Link zur Theme-Preview-Seite. So kann ein Kunde direkt am Handy verschiedene Designs testen, ohne dass die mobilen Bestell-Buttons verdeckt werden.
+Mit `showThemeSwitcher: true` ist die Theme-Auswahl auch auf Smartphones sichtbar, aber bewusst dezent. Auf mobilen Viewports erscheint oberhalb der Bestell-Leiste ein kleiner Button `Design`. Erst nach dem Antippen öffnet sich die Theme-Auswahl mit Link zur Theme-Preview-Seite. So kann ein Kunde direkt am Handy verschiedene Designs testen, ohne dass die Website wie eine technische Demo wirkt.
 
 Nach der Kundenauswahl wird das finale Theme in `theme` eingetragen, zum Beispiel:
 

@@ -2,6 +2,7 @@ window.SITE_CONFIG = {
   defaultLanguage: "de",
   supportedLanguages: ["de", "en"],
   theme: "imbiss-pro",
+  // Developer/client preview only. Set to false before final delivery if the theme is already selected.
   showThemeSwitcher: true,
 
   restaurantName: "Schnell & Lecker",
