@@ -92,18 +92,39 @@ Gute Food-Fotos sind fuer Restaurant-Websites sehr wichtig.
 Die Startseite und Kontaktseite zeigen einen Google-Bewertungsblock. Die Werte werden in `data/site-config.js` gepflegt:
 
 ```js
+googlePlacesApiKey: "",
 googlePlaceId: "",
+googlePlacesReviewLimit: 3,
 googleReviewLink: "https://www.google.com/maps/...",
 googleRating: 4.1,
-googleReviewCount: 549
+googleReviewCount: 564
 ```
 
-Wenn eine echte Google Place ID vorhanden ist, `googlePlaceId` eintragen. Dann erzeugt das Template automatisch einen direkten Link:
+Fallback ohne API-Key:
+
+- `googleRating` und `googleReviewCount` werden direkt aus der Config angezeigt.
+- `googleReviewLink` oeffnet das Google-Profil oder die Google Maps Suche.
+
+Automatisch aus Google Places laden:
+
+1. Google Maps JavaScript API und Places API im Google Cloud Projekt aktivieren.
+2. Browser-Key mit HTTP-Referrer-Restriktion erstellen.
+3. `googlePlacesApiKey` und `googlePlaceId` eintragen.
+4. Optional `googlePlacesReviewLimit` auf 1-5 setzen.
+
+Wenn `googlePlaceId` vorhanden ist, erzeugt das Template automatisch einen direkten Bewertungslink:
 
 ```text
 https://search.google.com/local/writereview?placeid=PLACE_ID
 ```
 
+Mit `googlePlacesApiKey` + `googlePlaceId` aktualisiert das Template automatisch:
+
+- Bewertung (`rating`)
+- Anzahl Bewertungen (`user_ratings_total`)
+- Google Maps URL
+- bis zu 5 von Google gelieferten Rezensionen
+
 Wichtig: Eine normale statische Website kann neue Bewertungen nicht selbst in Google Maps veroeffentlichen. Gaeste muessen die Bewertung in Google/Google Maps absenden. Der Button auf der Website fuehrt deshalb zum Google-Profil bzw. zur Google-Bewertungsmaske.
 
-Ausgewaehlte Google-Rezensionen koennen manuell in `reviews` eingetragen werden. Fuer ein automatisches Live-Auslesen echter Google-Bewertungen ist ein eigener Backend-Service mit Google Business Profile API noetig; API-Schluessel duerfen nicht im statischen Frontend liegen.
+Fuer alle Bewertungen, Antworten auf Rezensionen oder Business-Management ist ein eigener Backend-Service mit Google Business Profile API und OAuth noetig. API-Schluessel im statischen Frontend muessen immer per HTTP-Referrer eingeschraenkt werden.

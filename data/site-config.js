@@ -38,10 +38,12 @@ window.SITE_CONFIG = {
 
   googleMapsEmbedUrl: "https://www.google.com/maps?q=Schnell%20%26%20Lecker%2C%20D%C3%BClmener%20Str.%2044%2C%2046286%20Dorsten&output=embed",
   googleMapsLink: "https://www.google.com/maps/search/?api=1&query=Schnell%20%26%20Lecker%2C%20D%C3%BClmener%20Str.%2044%2C%2046286%20Dorsten",
+  googlePlacesApiKey: "",
   googlePlaceId: "",
+  googlePlacesReviewLimit: 3,
   googleReviewLink: "https://www.google.com/maps/search/?api=1&query=Schnell%20%26%20Lecker%2C%20D%C3%BClmener%20Str.%2044%2C%2046286%20Dorsten",
   googleRating: 4.1,
-  googleReviewCount: 549,
+  googleReviewCount: 564,
 
   openingHours: [
     { days: { de: "Montag", en: "Monday" }, time: "11:30 - 22:00" },

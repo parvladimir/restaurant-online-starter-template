@@ -15,6 +15,7 @@
   const supportedLanguages = config.supportedLanguages || ["de", "en"];
   let currentLanguage = localStorage.getItem(storageKey) || config.defaultLanguage || "de";
   let activeTheme = resolveInitialTheme();
+  let googlePlaceLoaded = false;
 
   if (!supportedLanguages.includes(currentLanguage)) {
     currentLanguage = config.defaultLanguage || "de";
@@ -243,6 +244,7 @@
     setupSmoothScroll();
     updateSeo();
     renderSchema();
+    initGooglePlaces();
     document.documentElement.lang = currentLanguage;
   });
 
@@ -441,6 +443,98 @@
     });
   }
 
+  function initGooglePlaces() {
+    if (googlePlaceLoaded || !config.googlePlacesApiKey || !config.googlePlaceId) return;
+    googlePlaceLoaded = true;
+
+    loadGooglePlacesScript()
+      .then(fetchGooglePlaceDetails)
+      .then((place) => {
+        applyGooglePlaceDetails(place);
+        renderGoogleReviews();
+        renderReviews();
+        renderSchema();
+      })
+      .catch(() => {
+        googlePlaceLoaded = false;
+      });
+  }
+
+  function loadGooglePlacesScript() {
+    if (window.google?.maps?.places) return Promise.resolve();
+    if (window.__restaurantGooglePlacesPromise) return window.__restaurantGooglePlacesPromise;
+
+    window.__restaurantGooglePlacesPromise = new Promise((resolve, reject) => {
+      const callbackName = "__restaurantGooglePlacesReady";
+      window[callbackName] = () => resolve();
+
+      const script = document.createElement("script");
+      const params = new URLSearchParams({
+        key: config.googlePlacesApiKey,
+        libraries: "places",
+        language: currentLanguage,
+        v: "weekly",
+        loading: "async",
+        callback: callbackName
+      });
+      script.src = `https://maps.googleapis.com/maps/api/js?${params.toString()}`;
+      script.async = true;
+      script.defer = true;
+      script.onerror = () => reject(new Error("Google Places script could not be loaded."));
+      document.head.appendChild(script);
+    });
+
+    return window.__restaurantGooglePlacesPromise;
+  }
+
+  function fetchGooglePlaceDetails() {
+    return new Promise((resolve, reject) => {
+      if (!window.google?.maps?.places?.PlacesService) {
+        reject(new Error("Google Places service is unavailable."));
+        return;
+      }
+
+      const serviceNode = document.createElement("div");
+      const service = new window.google.maps.places.PlacesService(serviceNode);
+      service.getDetails(
+        {
+          placeId: config.googlePlaceId,
+          fields: ["name", "rating", "user_ratings_total", "url", "reviews"]
+        },
+        (place, status) => {
+          const ok = window.google.maps.places.PlacesServiceStatus.OK;
+          if (status === ok && place) resolve(place);
+          else reject(new Error(`Google Places request failed: ${status}`));
+        }
+      );
+    });
+  }
+
+  function applyGooglePlaceDetails(place) {
+    if (typeof place.rating === "number") {
+      config.googleRating = place.rating;
+    }
+
+    if (typeof place.user_ratings_total === "number") {
+      config.googleReviewCount = place.user_ratings_total;
+    }
+
+    if (place.url) {
+      config.googleReviewLink = place.url;
+    }
+
+    if (Array.isArray(place.reviews) && place.reviews.length) {
+      const limit = Math.min(Math.max(Number(config.googlePlacesReviewLimit) || 3, 1), 5);
+      config.reviews = place.reviews.slice(0, limit).map((review) => ({
+        name: review.author_name || "Google Nutzer",
+        rating: review.rating || 5,
+        source: { de: "Google Maps", en: "Google Maps" },
+        date: review.time ? new Date(review.time * 1000).toISOString().slice(0, 10) : "",
+        text: review.text || review.relative_time_description || ""
+      }));
+    }
+  }
+
   function renderReviews() {
     document.querySelectorAll("[data-reviews]").forEach((container) => {
       container.innerHTML = "";
@@ -465,7 +559,7 @@
     const href = getGoogleReviewHref();
     const rating = formatRating(config.googleRating);
     const ratingFull = rating ? `${rating}/5` : "";
-    const count = config.googleReviewCount ? `${config.googleReviewCount} ${t("googleReviewCountLabel")}` : t("googleReviewFallback");
+    const count = config.googleReviewCount ? `${formatReviewCount(config.googleReviewCount)} ${t("googleReviewCountLabel")}` : t("googleReviewFallback");
 
     setText("[data-google-rating]", rating);
     setText("[data-google-rating-full]", ratingFull);
@@ -756,6 +850,12 @@
     if (!Number.isFinite(number) || number <= 0) return "";
     const rounded = number.toFixed(1);
     return currentLanguage === "de" ? rounded.replace(".", ",") : rounded;
+  }
+
+  function formatReviewCount(value) {
+    const number = Number(value);
+    if (!Number.isFinite(number)) return value;
+    return new Intl.NumberFormat(currentLanguage === "de" ? "de-DE" : "en-US").format(number);
   }
 
   function formatReviewDate(value) {

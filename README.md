@@ -251,21 +251,42 @@ Food websites depend heavily on real, appetizing images.
 The template has a Google review block on the homepage and contact page. Edit these values in `data/site-config.js`:
 
 ```js
+googlePlacesApiKey: "",
 googlePlaceId: "",
+googlePlacesReviewLimit: 3,
 googleReviewLink: "https://www.google.com/maps/...",
 googleRating: 4.1,
-googleReviewCount: 549
+googleReviewCount: 564
 ```
 
-If you have the real Google Place ID, enter it in `googlePlaceId`. The template will use the direct Google review URL:
+Fallback without an API key:
+
+- `googleRating` and `googleReviewCount` are shown from the config.
+- `googleReviewLink` opens the Google profile or Google Maps search.
+
+Automatic Google Places loading:
+
+1. Enable Google Maps JavaScript API and Places API in Google Cloud.
+2. Create a browser key restricted by HTTP referrer.
+3. Fill `googlePlacesApiKey` and `googlePlaceId`.
+4. Optionally set `googlePlacesReviewLimit` from 1-5.
+
+If `googlePlaceId` is present, the template will use the direct Google review URL:
 
 ```text
 https://search.google.com/local/writereview?placeid=PLACE_ID
 ```
 
+With `googlePlacesApiKey` + `googlePlaceId`, the template automatically updates:
+
+- rating
+- review count
+- Google Maps URL
+- up to 5 reviews returned by Google
+
 A static website cannot publish reviews into Google Maps by itself. Guests must submit public reviews inside Google/Google Maps. The website button starts that flow by opening the Google profile or Google review form.
 
-Selected Google review excerpts can be maintained manually in `reviews`. Automatic live loading from Google requires a backend service with Google Business Profile API access; do not expose API keys in static frontend code.
+For all reviews, review replies or business management, use a backend service with Google Business Profile API and OAuth. Any API key used in a static frontend must be restricted by HTTP referrer.
 
 Этот шаблон можно показывать клиентам как демо, но для реального ресторанного сайта обязательно нужны хорошие фотографии.
 
