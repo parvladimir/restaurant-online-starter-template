@@ -1953,8 +1953,8 @@ body.theme-german-gasthaus .hero-media::after {
 
 @media (max-width: 839px) {
   .site-header {
-    width: 100vw;
-    overflow: clip;
+    width: 100%;
+    overflow: visible;
   }
 
   .header-inner {
@@ -2004,6 +2004,16 @@ body.theme-german-gasthaus .hero-media::after {
   }
 
   .nav-toggle span {
+    display: none;
+  }
+
+  .site-nav {
+    z-index: 70;
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.18);
+  }
+
+  body.nav-open .mobile-order-bar,
+  body.nav-open .mobile-theme-chooser {
     display: none;
   }
 
