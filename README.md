@@ -215,7 +215,17 @@ showThemeSwitcher: true
 - `cafe-minimal`: best for cafés, bakeries, brunch places, breakfast restaurants and ice cream cafés.
 - `german-gasthaus`: best for German restaurants, Biergarten, local family restaurants and traditional cuisine.
 
-Для разработки можно оставить `showThemeSwitcher: true`. Тогда в правом нижнем углу появится переключатель тем. Перед передачей сайта клиенту обычно ставят:
+Для разработки можно оставить `showThemeSwitcher: true`. Тогда на десктопе в правом нижнем углу появится переключатель тем.
+
+На мобильной версии при `showThemeSwitcher: true` выбор темы тоже виден: под шапкой появляется отдельная панель `Design-Vorschau` с выпадающим списком и ссылкой на все дизайны. Так клиент может открыть сайт на телефоне, переключить все 5 дизайнов и выбрать понравившийся вариант, а нижние кнопки заказа остаются свободными.
+
+После выбора клиента запишите финальную тему в `theme`, например:
+
+```js
+theme: "imbiss-pro"
+```
+
+Перед передачей сайта клиенту обычно ставят:
 
 ```js
 showThemeSwitcher: false

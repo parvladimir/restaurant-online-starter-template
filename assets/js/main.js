@@ -272,6 +272,7 @@
       localStorage.setItem(themeStorageKey, theme);
     }
     applySelectedTheme();
+    syncThemeSelects();
     updateHeroImages();
     renderSchema();
   }
@@ -659,24 +660,57 @@
   function setupThemeSwitcher() {
     if (!config.showThemeSwitcher || document.querySelector("[data-theme-switcher]")) return;
 
+    const optionsMarkup = availableThemes.map((theme) => `<option value="${theme}">${formatThemeName(theme)}</option>`).join("");
     const switcher = document.createElement("aside");
     switcher.className = "theme-switcher";
     switcher.dataset.themeSwitcher = "";
     switcher.setAttribute("aria-label", "Design-Theme Vorschau");
     switcher.innerHTML = `
       <label>
-        <span>Theme Preview</span>
+        <span>Design wählen</span>
         <select data-theme-select>
-          ${availableThemes.map((theme) => `<option value="${theme}">${formatThemeName(theme)}</option>`).join("")}
+          ${optionsMarkup}
         </select>
       </label>
-      <a href="theme-preview.html">Alle Themes</a>
+      <a href="theme-preview.html">
+        <span class="theme-link-full">Alle Designs</span>
+        <span class="theme-link-short">Alle</span>
+      </a>
     `;
 
-    const select = switcher.querySelector("[data-theme-select]");
-    select.value = activeTheme;
-    select.addEventListener("change", (event) => setTheme(event.target.value));
+    const mobileSwitcher = document.createElement("aside");
+    mobileSwitcher.className = "mobile-theme-chooser";
+    mobileSwitcher.dataset.mobileThemeSwitcher = "";
+    mobileSwitcher.setAttribute("aria-label", "Mobile Design-Theme Vorschau");
+    mobileSwitcher.innerHTML = `
+      <div class="mobile-theme-chooser-head">
+        <span>Design-Vorschau</span>
+        <a href="theme-preview.html">Alle</a>
+      </div>
+      <label>
+        <span>Theme auswählen</span>
+        <select data-theme-select>
+          ${optionsMarkup}
+        </select>
+      </label>
+    `;
+
+    document.body.classList.add("has-theme-switcher");
     document.body.appendChild(switcher);
+    const header = document.querySelector(".site-header");
+    if (header) header.insertAdjacentElement("afterend", mobileSwitcher);
+    else document.body.prepend(mobileSwitcher);
+    syncThemeSelects();
+
+    document.querySelectorAll("[data-theme-select]").forEach((select) => {
+      select.addEventListener("change", (event) => setTheme(event.target.value));
+    });
+  }
+
+  function syncThemeSelects() {
+    document.querySelectorAll("[data-theme-select]").forEach((select) => {
+      select.value = activeTheme;
+    });
   }
 
   function setupForms() {
