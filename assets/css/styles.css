@@ -2695,7 +2695,7 @@ body.home-page .order-hero-media::after {
 
   .mobile-order-bar {
     position: fixed;
-    left: 12px;
+    left: 50%;
     right: auto;
     bottom: 12px;
     z-index: 90;
@@ -2709,6 +2709,7 @@ body.home-page .order-hero-media::after {
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
     backdrop-filter: blur(16px);
+    transform: translateX(-50%);
   }
 
   .mobile-order-bar a {
@@ -2735,7 +2736,7 @@ body.home-page .order-hero-media::after {
 
   body.has-theme-switcher .mobile-theme-chooser {
     position: fixed;
-    left: 12px;
+    left: max(12px, calc((100vw - min(calc(100vw - 24px), 358px)) / 2));
     bottom: 14px;
     z-index: 92;
     display: block;
