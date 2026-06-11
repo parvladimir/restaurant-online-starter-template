@@ -2267,6 +2267,43 @@ body.theme-german-gasthaus .hero-media::after {
   border-color: rgba(255, 255, 255, 0.6);
 }
 
+body.home-page.theme-german-gasthaus .order-hero-content {
+  background:
+    linear-gradient(135deg, rgba(255, 249, 235, 0.96), rgba(255, 244, 223, 0.88)),
+    color-mix(in srgb, var(--color-surface) 92%, transparent);
+  border-color: rgba(184, 137, 77, 0.48);
+  color: #2d241c;
+}
+
+body.home-page.theme-german-gasthaus .order-hero h1 {
+  color: #183f2f;
+  text-shadow: none;
+}
+
+body.home-page.theme-german-gasthaus .order-hero .hero-slogan {
+  color: #7c2d2d;
+}
+
+body.home-page.theme-german-gasthaus .order-hero p:not(.eyebrow) {
+  color: #5f4f3e;
+}
+
+body.home-page.theme-german-gasthaus .order-hero .eyebrow {
+  border-color: rgba(184, 137, 77, 0.58);
+  background: rgba(255, 249, 235, 0.86);
+  color: #9a6a2f;
+}
+
+body.home-page.theme-german-gasthaus .order-hero .button-ghost {
+  border-color: rgba(184, 137, 77, 0.5);
+  background: rgba(255, 249, 235, 0.94);
+  color: #183f2f;
+}
+
+body.home-page.theme-german-gasthaus .order-hero .button-ghost:hover {
+  color: #183f2f;
+}
+
 .home-page .order-hero h1 {
   max-width: 11ch;
   font-size: clamp(3.1rem, 7vw, 6.8rem);
